@@ -50,6 +50,10 @@ const newsCategoryDisplay = newses =>{
         <h6>${news.author.name}</h6>
         <p>${news.author.published_date}</p>
         </div>
+        <div>
+        <i class="fa-solid fa-eye"></i>
+        <span>${news.total_view+'Views'}</span>
+        </div>
         </div>
         </div>
         `
