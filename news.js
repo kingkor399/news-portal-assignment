@@ -20,8 +20,8 @@ const displayCategory = categorys =>{
     })
 }
 
-const newCategory = async(news_id) =>{
-    const url = `https://openapi.programming-hero.com/api/news/category/${news_id}`
+const newCategory = async(category_id) =>{
+    const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
     const res = await fetch(url)
     const newsData = await res.json()
     newsCategoryDisplay(newsData.data);
@@ -47,14 +47,15 @@ const newsCategoryDisplay = newses =>{
         <img src="${news.author.img}" alt="" width="50" height="50" class="d-inline-block align-text-top rounded-5">
         </div>
         <div class="mx-2">
-        <h6>${news.author.name}</h6>
-        <p>${news.author.published_date}</p>
+        <h6>${news.author.name ? news.author.name : 'No data available'}</h6>
+        <p>${news.author.published_date ? news.author.published_date : 'No data available'}</p>
         </div>
         <div>
         <i class="fa-solid fa-eye"></i>
-        <span>${news.total_view+'Views'}</span>
+        <span>${news.total_view +'Views' ? news.total_view +'Views' : 'No data available'}</span>
         </div>
         </div>
+        <a href="#" class="btn btn-success text-light w-50 mx-auto my-2">News Details</a>
         </div>
         `
         newsContainer.appendChild(divUser);
