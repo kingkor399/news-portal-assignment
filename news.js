@@ -52,7 +52,7 @@ const newsCategoryDisplay = newses =>{
         </div>
         <div>
         <i class="fa-solid fa-eye"></i>
-        <span>${news.total_view ? news.total_view : 'not found'} Views </span>
+        <span>${news.total_view ? news.total_view : 'Not found'} Views </span>
         </div>
         </div>
         <button onclick="loadNewsdetails('${news._id}')" href="#" class="btn btn-info text-light w-50 mx-auto my-2" data-bs-toggle="modal" data-bs-target="#newsDetailbtn">News Details</button>
@@ -71,12 +71,18 @@ const loadNewsdetails = async(news_id) =>{
 
 const displayNewsdetails = news =>{
     const newsDetailbtnLabel = document.getElementById('newsDetailbtnLabel');
-    newsDetailbtnLabel.innerText = news.title;
+    newsDetailbtnLabel.innerText = `
+    HeadLine:
+    ${news.title}
+    `
     const modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = `
-    
+    <img class="img-fluid w-25" src="${news.author.img}">
+    <p class="fw-bold">${news.author.name ? news.author.name : 'No data available'}</p>
+    <p>${news.author.published_date ? news.author.published_date : 'No data available'}</p>
+    <p <i class="fa-solid fa-eye"></i> ${news.total_view ? news.total_view : 'Not found'} Views</p>
+    <p>${news.details}</p>
     `
-
 }
 
 categoryLoaded();
