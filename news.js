@@ -21,6 +21,7 @@ const displayCategory = categorys =>{
 }
 
 const newCategory = async(category_id) =>{
+    toogleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
     const res = await fetch(url)
     const newsData = await res.json()
@@ -59,7 +60,10 @@ const newsCategoryDisplay = newses =>{
         </div>
         `
         newsContainer.appendChild(divUser);
+
     })
+    toogleSpinner(false);
+    
 }
 
 const loadNewsdetails = async(news_id) =>{
@@ -83,6 +87,16 @@ const displayNewsdetails = news =>{
     <p <i class="fa-solid fa-eye"></i> ${news.total_view ? news.total_view : 'Not found'} Views</p>
     <p>${news.details}</p>
     `
+}
+
+const toogleSpinner = isLoading =>{
+    const loaderSection = document.getElementById('loader');
+    if (isLoading){
+        loaderSection.classList.remove('d-none');
+    }
+    else{
+        loaderSection.classList.add('d-none');
+    }
 }
 
 categoryLoaded();
