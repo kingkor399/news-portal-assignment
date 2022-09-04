@@ -86,3 +86,4 @@ const displayNewsdetails = news =>{
 }
 
 categoryLoaded();
+newCategory('08');
