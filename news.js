@@ -28,7 +28,9 @@ const newCategory = async(category_id) =>{
     newsCategoryDisplay(newsData.data);
 }
 
-const newsCategoryDisplay = newses =>{
+const newsCategoryDisplay = (newses,categorys) =>{
+    const countNews = document.getElementById('count');
+    countNews.innerHTML = `<h3 class="text-dark">${newses.length} items found</h3>`
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = '';
     newses.forEach(news =>{
