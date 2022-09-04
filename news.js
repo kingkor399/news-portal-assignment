@@ -31,7 +31,7 @@ const newsCategoryDisplay = newses =>{
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = '';
     newses.forEach(news =>{
-        console.log(news)
+        // console.log(news)
         const divUser = document.createElement('div');
         divUser.classList.add('col');
         divUser.innerHTML = `
@@ -52,14 +52,31 @@ const newsCategoryDisplay = newses =>{
         </div>
         <div>
         <i class="fa-solid fa-eye"></i>
-        <span>${news.total_view +'Views' ? news.total_view +'Views' : 'No data available'}</span>
+        <span>${news.total_view ? news.total_view : 'not found'} Views </span>
         </div>
         </div>
-        <a href="#" class="btn btn-success text-light w-50 mx-auto my-2">News Details</a>
+        <button onclick="loadNewsdetails('${news._id}')" href="#" class="btn btn-info text-light w-50 mx-auto my-2" data-bs-toggle="modal" data-bs-target="#newsDetailbtn">News Details</button>
         </div>
         `
         newsContainer.appendChild(divUser);
     })
+}
+
+const loadNewsdetails = async(news_id) =>{
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    const res = await fetch(url)
+    const detailData = await res.json()
+    displayNewsdetails(detailData.data[0]);
+}
+
+const displayNewsdetails = news =>{
+    const newsDetailbtnLabel = document.getElementById('newsDetailbtnLabel');
+    newsDetailbtnLabel.innerText = news.title;
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
+    
+    `
+
 }
 
 categoryLoaded();
